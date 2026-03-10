@@ -2,4 +2,4 @@
 
 Display | Name | Github Profile | Portfolio
 --------|------|----------------|----------
-| Neeraj | [Github](https://github.com/neerajehh) | [Portfolio](docs/team/neerajehh.md)
+![](https://via.placeholder.com/100.png?text=Photo) | Neeraj | [Github](https://github.com/neerajehh) | [Portfolio](docs/team/neerajehh.md)
