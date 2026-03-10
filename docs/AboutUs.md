@@ -1,5 +1,8 @@
 # About us
 
 Display | Name | Github Profile | Portfolio
---------|------|----------------|----------
+---------|-------|----------------|----------
 ![](https://via.placeholder.com/100.png?text=Photo) | Neeraj | [Github](https://github.com/neerajehh) | [Portfolio](docs/team/neerajehh.md)
+![](https://via.placeholder.com/100.png?text=Photo) | Khoa | ...
+![](https://via.placeholder.com/100.png?text=Photo) | Wei Na | ...
+![](https://avatars...)(size=64) | Goh Shao Ann | ...
