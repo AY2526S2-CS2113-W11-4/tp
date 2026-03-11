@@ -30,7 +30,7 @@ public class ClassMate {
             "EE2026 Digital Design\n" +
             "EE4204 Computer Networks";
 
-    public static void main (String args[]) {
+    public static void main (String[] args) {
         System.out.println("Here is a list of modules required to fulfill the CEG Major: ");
         System.out.println(listOfMajorRequirements);
         System.out.println("\nNote: This list excludes Internship and FYP. ");
