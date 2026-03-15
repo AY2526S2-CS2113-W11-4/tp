@@ -10,6 +10,8 @@ public class Module {
     private String moduleCode;
     private String moduleName;
     private ArrayList<String> prerequisites;
+    private int units;
+    private String semester;
 
     /**
      * Constructs a {@code Module} with the specified module code and name.
@@ -19,17 +21,16 @@ public class Module {
      * @throws ClassMateException If the module code or name is empty.
      */
     public Module(String moduleCode, String moduleName) {
-        // Add guard clause against empty details
         assert moduleCode != null : "Module code should not be null";
         assert moduleName != null : "Module name should not be null";
-
         if (moduleCode.trim().isEmpty() || moduleName.trim().isEmpty()) {
             throw new ClassMateException("Module details cannot be empty.");
         }
-
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
         this.prerequisites = new ArrayList<>();
+        this.units = 4;
+        this.semester = "1/2";
     }
 
     /**
@@ -41,7 +42,6 @@ public class Module {
     public void addPrerequisite(String prereqCode) {
         assert prereqCode != null : "Prerequisite code cannot be null";
         assert !prereqCode.trim().isEmpty() : "Prerequisite code cannot be empty";
-
         boolean isDuplicate = prerequisites.contains(prereqCode);
         if (!isDuplicate) {
             this.prerequisites.add(prereqCode);
@@ -50,10 +50,40 @@ public class Module {
 
     public void addPrerequisites(String... prereqCodes) {
         assert prereqCodes != null : "Prerequisite array should not be null";
-
         for (String prereqCode : prereqCodes) {
             addPrerequisite(prereqCode.trim());
         }
+    }
+
+    /**
+     * Sets the number of units for this module.
+     *
+     * @param units The number of academic units.
+     */
+    public void setUnits(int units) {
+        this.units = units;
+    }
+
+    /**
+     * Sets the semester(s) this module is offered.
+     *
+     * @param semester The semester(s) offered (e.g., "1/2").
+     */
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    /**
+     * Returns a formatted string with full module information.
+     *
+     * @return A string with module code, name, units, semester, prerequisites and availability.
+     */
+    public String printInfo() {
+        String prereqStr = prerequisites.isEmpty() ? "NIL" : String.join(", ", prerequisites);
+        String canTake = prerequisites.isEmpty() ? "YES" : "NO";
+        return "Code: " + moduleCode + " Name: " + moduleName
+                + " Units: " + units + " Semester: " + semester
+                + " Prerequisites: " + prereqStr + " Can take: " + canTake;
     }
 
     /**
@@ -67,9 +97,9 @@ public class Module {
     }
 
     /**
-     * Returns the list of prerequisite module codes.
+     * Returns the prerequisites as a string.
      *
-     * @return An {@code ArrayList} containing prerequisite module codes.
+     * @return A string listing prerequisites.
      */
     public String toStringPrerequisites() {
         if (prerequisites.isEmpty()) {
@@ -94,11 +124,8 @@ public class Module {
 
     public String printPrereqTree(Major major) {
         assert major != null : "Major object should not be null";
-        
         StringBuilder sb = new StringBuilder();
-
         ArrayList<Module> parents = major.findModulesWithPrereq(moduleCode);
-
         if (!parents.isEmpty()) {
             StringBuilder parentModules = new StringBuilder();
             for (Module module : parents) {
@@ -109,33 +136,28 @@ public class Module {
         } else {
             printPrereqTreeHelper(major, "", true, true, sb);
         }
-
         return sb.toString();
     }
 
-    private void printPrereqTreeHelper(Major major, String prefix, 
-            boolean isLast, boolean isFirst, StringBuilder sb) {
+    private void printPrereqTreeHelper(Major major, String prefix,
+                                       boolean isLast, boolean isFirst, StringBuilder sb) {
         sb.append(prefix);
-        if (!isFirst) {  
+        if (!isFirst) {
             sb.append(isLast ? "└── " : "├── ");
         }
         sb.append(moduleCode).append("\n");
-
         String newPrefix = prefix + (isLast ? "    " : "│   ");
-
         for (int i = 0; i < prerequisites.size(); i++) {
             String prereqCode = prerequisites.get(i);
             Module prereqModule = major.findModule(prereqCode);
-
             boolean lastChild = (i == prerequisites.size() - 1);
-
             if (prereqModule != null) {
                 prereqModule.printPrereqTreeHelper(major, newPrefix, lastChild, false, sb);
             } else {
                 sb.append(newPrefix)
-                    .append(lastChild ? "└── " : "├── ")
-                    .append(prereqCode)
-                    .append("\n");
+                        .append(lastChild ? "└── " : "├── ")
+                        .append(prereqCode)
+                        .append("\n");
             }
         }
     }
