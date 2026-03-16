@@ -107,9 +107,12 @@ public class Module {
     public String printInfo() {
         String prereqStr = prerequisites.isEmpty() ? "NIL" : String.join(", ", prerequisites);
         String canTake = prerequisites.isEmpty() ? "YES" : "NO";
-        return "Code: " + moduleCode + " Name: " + moduleName
-                + " Units: " + units + " Semester: " + semester
-                + " Prerequisites: " + prereqStr + " Can take: " + canTake;
+        return " Code: " + moduleCode + "\n" +
+               " Name: " + moduleName + "\n" +
+               " Units: " + units + "\n" +
+               " Semester: " + semester + "\n" +
+               " Prerequisites: " + prereqStr + "\n" +
+               " Can take: " + canTake + "\n";
     }
 
     /**
