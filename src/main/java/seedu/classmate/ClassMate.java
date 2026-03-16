@@ -103,7 +103,7 @@ public class ClassMate {
                     break;
                 case "view":
                     try {
-                        int specNumber = Integer.parseInt(command.getArgs().trim());
+                        int specNumber = Integer.parseInt(arguments.trim());
                         Specialisation selectedSpecialisation = specOverview.getSpecialisationDetails(specNumber);
                         specOverview.displaySpecialisationDetails(selectedSpecialisation);
                         //System.out.println(selectedSpecialisation);
