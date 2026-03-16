@@ -1,8 +1,11 @@
 package seedu.classmate;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class ClassMate {
+    private static final Logger logger = Logger.getLogger(ClassMate.class.getName());
+
     /**
      * Main entry-point for the java.classmate.Classmate application.
      */
@@ -15,29 +18,39 @@ public class ClassMate {
         System.out.println("Welcome to\n" + logo);
         System.out.println("I'm your CEG course planning assistant!");
         System.out.println("Type 'help' to see available commands.");
+        logger.info("ClassMate application started.");
         Scanner in = new Scanner(System.in);
         Major major = new Major();
+        assert major != null : "Major should not be null";
         while (true) {
             String input = in.nextLine();
+            assert input != null : "Input should not be null";
+            logger.info("User input: " + input);
             try {
                 Command command = Parser.parse(input);
+                assert command != null : "Command should not be null";
                 switch (command.getCommandWord()) {
                 case "help":
                     printHelp();
                     break;
                 case "bye":
                     goodbyeMessage();
+                    logger.info("ClassMate application exited.");
                     return;
                 case "viewGradReq":
                     System.out.println(major);
                     break;
                 case "prereq":
                     String moduleCode = command.getArgs();
+                    assert moduleCode != null : "Module code should not be null";
+                    logger.info("Fetching prereqs for: " + moduleCode);
                     Module module = major.findModule(moduleCode);
                     System.out.println(module.printPrereqTree(major));
                     break;
                 case "printmoduleinfo":
                     String[] moduleCodes = command.getArgs().split("\\s+");
+                    assert moduleCodes.length > 0 : "Module codes should not be empty";
+                    logger.info("Printing module info for: " + command.getArgs());
                     System.out.println("Module Info for " + command.getArgs());
                     for (String code : moduleCodes) {
                         Module m = major.findModule(code.trim());
@@ -53,6 +66,8 @@ public class ClassMate {
                     break;
                 case "specialisation":
                     String specialisationName = command.getArgs();
+                    assert specialisationName != null : "Specialisation name should not be null";
+                    logger.info("Fetching specialisation: " + specialisationName);
                     System.out.println("Listing details for " + specialisationName);
                     Specialisation spec = new Specialisation(specialisationName);
                     break;
@@ -60,6 +75,7 @@ public class ClassMate {
                     throw new ClassMateException("Unknown command.");
                 }
             } catch (ClassMateException e) {
+                logger.warning("ClassMateException: " + e.getMessage());
                 System.out.println(e.getMessage());
             }
         }
