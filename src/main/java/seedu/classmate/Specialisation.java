@@ -8,13 +8,38 @@ import java.util.stream.Collectors;
  */
 public class Specialisation {
 
+    private static final String internetOfThingsDescription = "IoT and its suite of enabling hardware and software " +
+            "components, referred to as IoT systems, are perceived as one of the most influential technologies in " +
+            "the modern era in both industry and academia";
+
+    private static final String advancedElectronicsDescription = "This specialisation in Advanced Electronics (AE) " +
+            "will introduce students to industry practices related to semiconductor fabrication, chip manufacturing, " +
+            "IC design and prototyping";
+
+    private static final String spaceTechDescription = "The Space Technology specialisation will equip students for " +
+            "satellite related industries and many other industries such as aerospace, automotive and all the " +
+            "related commercial products";
+
+    private static final String industryDescription = "The specialisation allows students to learn about machines " +
+            "augmented with sensors which communicate with each other, servers, the cloud, and people to enhance " +
+            "autonomy, visualization and decision making";
+
+    private static final String roboticsDescription = " The specialisation allows students to take a hands-on " +
+            "approach to learning, through small projects in the modules and a final year project on robotics. " +
+            "Students will need to design and construct robotic systems or their components";
+
     private String specialisationName;
+    private String specialisationDescription;
     private ArrayList<Module> specialisationCoreModules;
     private ArrayList<Module> specialisationElectiveModules;
     private String electiveRequirements;
 
     public String getSpecialisationName() {
         return specialisationName;
+    }
+
+    public String getSpecialisationDescription() {
+        return specialisationDescription;
     }
 
     public ArrayList<Module> getSpecialisationCoreModules() {
@@ -223,7 +248,7 @@ public class Specialisation {
 
         switch (specialisationName) {
         case "Internet of Things":
-
+            specialisationDescription = internetOfThingsDescription;
             electiveRequirements = "Choose any two courses, or totaling at least 8 units, from the list below:";
 
             specialisationCoreModules.add(cs3237);
@@ -241,6 +266,7 @@ public class Specialisation {
             break;
 
         case "Advanced Electronics":
+            specialisationDescription = advancedElectronicsDescription;
             electiveRequirements = "Choose any three courses, or totaling at least 12 units, from the list below:";
             specialisationCoreModules.add(ee3408c);
             specialisationCoreModules.add(ee3431c);
@@ -258,6 +284,7 @@ public class Specialisation {
             break;
 
         case "Space Technology":
+            specialisationDescription = spaceTechDescription;
             electiveRequirements = "Choose any two courses, or totaling at least 8 units, from the list below:";
             specialisationCoreModules.add(ee3105);
             specialisationCoreModules.add(ee4002DR);
@@ -273,6 +300,7 @@ public class Specialisation {
             break;
 
         case "Industry 4.0":
+            specialisationDescription = industryDescription;
             electiveRequirements = "Choose any three courses, or totaling at least 12 units, from the list below:";
             specialisationCoreModules.add(ee3331c);
             specialisationCoreModules.add(ee3306);
@@ -296,6 +324,7 @@ public class Specialisation {
             break;
 
         case "Robotics":
+            specialisationDescription = roboticsDescription;
             electiveRequirements = "12 Units from electives AND a Capstone (8 Units) in Robotics OR, 20 Units " +
                     "from electives:";
 
