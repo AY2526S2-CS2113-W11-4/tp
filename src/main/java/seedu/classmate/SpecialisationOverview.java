@@ -22,7 +22,9 @@ public class SpecialisationOverview {
     }
 
     public void displaySpecialisationDetails(Specialisation selectedSpecialisation) {
-        System.out.println("Specialisation: " + selectedSpecialisation.getSpecialisationName());
+        System.out.println("Specialisation: " + selectedSpecialisation.getSpecialisationName() + "\n");
+
+        System.out.println("Description: " + selectedSpecialisation.getSpecialisationDescription() + "\n");
 
         System.out.println("Core Modules:");
         for (Module coreModule : selectedSpecialisation.getSpecialisationCoreModules()) {
