@@ -76,7 +76,7 @@ public class SpecialisationOverview {
      * @throws ClassMateException If the provided number is outside the range of available specialisations.
      */
     public Specialisation getSpecialisationDetails(int specialisationNumber) {
-        if (specialisationNumber < 0 || specialisationNumber >= specs.size()) {
+        if (specialisationNumber < 0 || specialisationNumber > specs.size()) {
             throw new ClassMateException("Invalid specialisation number. Please choose a number between 1 and "
                     + specs.size());
         }
