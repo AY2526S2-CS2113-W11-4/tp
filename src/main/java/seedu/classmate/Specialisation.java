@@ -35,6 +35,13 @@ public class Specialisation {
     private ArrayList<Module> specialisationElectiveModules;
     private String electiveRequirements;
 
+    public Specialisation(String name) {
+        this.specialisationName = name;
+        this.specialisationCoreModules = new ArrayList<>();
+        this.specialisationElectiveModules = new ArrayList<>();
+        setupCEGSpecialisationModules();
+    }
+
     public String getSpecialisationName() {
         return specialisationName;
     }
@@ -49,13 +56,6 @@ public class Specialisation {
 
     public ArrayList<Module> getSpecialisationElectiveModules() {
         return specialisationElectiveModules;
-    }
-
-    public Specialisation(String name) {
-        this.specialisationName = name;
-        this.specialisationCoreModules = new ArrayList<>();
-        this.specialisationElectiveModules = new ArrayList<>();
-        setupCEGSpecialisationModules();
     }
 
     @Override

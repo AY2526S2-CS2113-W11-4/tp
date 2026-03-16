@@ -1,4 +1,4 @@
 help
-view grad req
+hi
 viewGradReq
 bye

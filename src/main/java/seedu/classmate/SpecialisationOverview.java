@@ -16,7 +16,8 @@ public class SpecialisationOverview {
 
     public void listAllSpecialisations() {
         for (int specialisationIndex = 0; specialisationIndex < specs.size(); specialisationIndex++) {
-            System.out.println((specialisationIndex + 1) + ". " + specs.get(specialisationIndex).getSpecialisationName());
+            System.out.println((specialisationIndex + 1) + ". "
+                    + specs.get(specialisationIndex).getSpecialisationName());
         }
         System.out.println("Enter <view specialisationNumber> to preview specialisation information.");
     }
@@ -41,7 +42,8 @@ public class SpecialisationOverview {
 
     public Specialisation getSpecialisationDetails(int specialisationNumber) {
         if (specialisationNumber < 0 || specialisationNumber >= specs.size()) {
-            throw new ClassMateException("Invalid specialisation number. Please choose a number between 1 and " + specs.size());
+            throw new ClassMateException("Invalid specialisation number. Please choose a number between 1 and "
+                    + specs.size());
         }
         return specs.get(specialisationNumber - 1);
     }

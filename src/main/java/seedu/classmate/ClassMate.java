@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public class ClassMate {
     private static final Logger logger = Logger.getLogger(ClassMate.class.getName());
-    static SpecialisationOverview specOverview = new SpecialisationOverview();
+    private static SpecialisationOverview specOverview = new SpecialisationOverview();
 
     /**
      * Main entry-point for the java.classmate.Classmate application.
@@ -26,7 +26,7 @@ public class ClassMate {
         while (true) {
             String input = in.nextLine();
             assert input != null : "Input should not be null";
-            //logger.info("User input: " + input);
+            logger.info("User input: " + input);
             try {
                 String trimmedInput = input.trim();
                 assert trimmedInput != null : "Command should not be null";
@@ -103,7 +103,7 @@ public class ClassMate {
                     break;
                 case "view":
                     try {
-                        int specNumber = Integer.parseInt(command.getArgs().trim());
+                        int specNumber = Integer.parseInt(arguments.trim());
                         Specialisation selectedSpecialisation = specOverview.getSpecialisationDetails(specNumber);
                         specOverview.displaySpecialisationDetails(selectedSpecialisation);
                         //System.out.println(selectedSpecialisation);
