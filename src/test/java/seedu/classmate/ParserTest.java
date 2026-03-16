@@ -1,7 +1,6 @@
 package seedu.classmate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,22 +11,22 @@ import org.junit.jupiter.api.Test;
 class ParserTest {
 
     @Test
-    public void parse_helpCommand_returnsHelpCommand() {
-        Command command = Parser.parse("help");
+    public void testHelpCommand() {
+        String result = Parser.parseCommand("help");
 
-        assertEquals("help", command.getCommandWord());
+        assertEquals("Viewing help", result);
     }
 
     @Test
-    public void parse_prereqCommand_returnsModuleCode() {
-        Command command = Parser.parse("prereq CS2113");
+    public void testViewGradReqCommand() {
+        String result = Parser.parseCommand("viewGradReq");
 
-        assertEquals("prereq", command.getCommandWord());
-        assertEquals("CS2113", command.getArgs());
+        assertEquals("Print CEG graduation requirements", result);
     }
 
     @Test
-    public void parse_emptyInput_throwsException() {
-        assertThrows(ClassMateException.class, () -> Parser.parse(""));
+    public void testEmptyCommand() {
+        String result = Parser.parseCommand("");
+        assertEquals("Unknown Command. Enter 'help' for available commands.", result);
     }
 }

@@ -1,3 +1,4 @@
 help
 view grad req
+viewGradReq
 bye
