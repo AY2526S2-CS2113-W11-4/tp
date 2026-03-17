@@ -62,7 +62,7 @@ public class Parser {
         case "specialisations":
             return new SpecialisationsCommand();
 
-        case "specialisation":
+        case "viewSpecialisationInfo":
             return new SpecialisationInfoCommand(args);
 
         default:
