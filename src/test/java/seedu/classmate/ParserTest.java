@@ -1,6 +1,8 @@
 package seedu.classmate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,15 +20,8 @@ class ParserTest {
     }
 
     @Test
-    public void testViewGradReqCommand() {
-        String result = Parser.parseCommand("viewGradReq");
-
-        assertEquals("Print CEG graduation requirements", result);
-    }
-
-    @Test
     public void testEmptyCommand() {
-        String result = Parser.parseCommand("");
-        assertEquals("Unknown Command. Enter 'help' for available commands.", result);
+        Exception exception = assertThrows(ClassMateException.class, () -> Parser.parseCommand(""));
+        assertEquals("Please enter a non-empty input!", exception.getMessage());
     }
 }
