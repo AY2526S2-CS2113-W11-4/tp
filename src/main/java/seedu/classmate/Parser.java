@@ -1,14 +1,6 @@
 package seedu.classmate;
 
-import seedu.classmate.commands.ByeCommand;
 import seedu.classmate.commands.Command;
-import seedu.classmate.commands.HelpCommand;
-import seedu.classmate.commands.PrereqCommand;
-import seedu.classmate.commands.PrintModuleInfoCommand;
-import seedu.classmate.commands.QueryModuleAvailabilityCommand;
-import seedu.classmate.commands.SpecialisationInfoCommand;
-import seedu.classmate.commands.ViewGradReqsCommand;
-import seedu.classmate.commands.ViewSpecialisationsCommand;
 
 /**
  * Parses user input and converts it into the corresponding {@code Command} object
