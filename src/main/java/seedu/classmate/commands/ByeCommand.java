@@ -10,7 +10,7 @@ import seedu.classmate.Ui;
 public class ByeCommand extends Command {
 
     public ByeCommand() {
-        this.isExit = true; // Sthis.isExit is inherited from Command
+        this.isExit = true; // this.isExit is inherited from Command
     }
 
     /**
