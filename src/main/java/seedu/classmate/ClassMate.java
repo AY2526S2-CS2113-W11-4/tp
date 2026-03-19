@@ -1,6 +1,4 @@
 package seedu.classmate;
-
-import seedu.classmate.commands.ByeCommand;
 import seedu.classmate.commands.Command;
 
 import java.util.Scanner;

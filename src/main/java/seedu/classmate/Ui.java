@@ -60,9 +60,9 @@ public class Ui {
         // Assertion: Ensure error handler layer provides a message
         assert errorMessage != null : "Error message passed to UI should not be null";
 
-    printLine();
-    System.out.println("    (!) ERROR: " + errorMessage);
-    printLine();
+        printLine();
+        System.out.println("    (!) ERROR: " + errorMessage);
+        printLine();
     }
 
     //TODO: major, module, specialisation related printing
