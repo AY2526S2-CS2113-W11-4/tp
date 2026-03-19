@@ -27,6 +27,7 @@ public class Ui {
         System.out.println("Goodbye! Happy course planning!");
         printLine();
     }
+
     public void showHelp() {
         System.out.println("Available commands:\n" +
                 "- help: " +
@@ -46,7 +47,19 @@ public class Ui {
         printLine();
     }
 
-    //TODO: error message printing
+    /* Ensure SRP between Ui and exception handler:
+    *  A separate class catches the exception
+    *  Ui handles printing the error in standardised format
+    */
+    public void showError(String errorMessage) {
+        // Assertion to ensure error handler layer provides a message
+        assert errorMessage != null : "Error message passed to UI should not be null";
+
+    printLine();
+    System.out.println("    (!) ERROR: " + errorMessage);
+    printLine();
+    }
+
     //TODO: major, module, specialisation related printing
 
 }
