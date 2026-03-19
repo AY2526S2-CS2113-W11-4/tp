@@ -24,22 +24,24 @@ public class ClassMate {
         SpecialisationOverview specOverview = new SpecialisationOverview();
         assert major != null : "Major should not be null";
         while (true) {
+
+        boolean isExit = false; // Flag to determine whether to exit Program
+
+        while (!isExit) {
             String input = in.nextLine();
             assert input != null : "Input should not be null";
             logger.info("User input: " + input);
+
             try {
                 Command command = Parser.parse(input);
-                command.executeCommand(major, display, specOverview);
+                command.executeCommand(major, ui, specOverview);
 
-                if (command instanceof ByeCommand) {
-                    logger.info("Classmate application exited.");
-                    return;
-                }
-
+                isExit = command.isExit();
             } catch (ClassMateException e) {
                 ui.showError(e.getMessage());
             }
         }
+        logger.info("ClassMate application exited.");
     }
 
 }

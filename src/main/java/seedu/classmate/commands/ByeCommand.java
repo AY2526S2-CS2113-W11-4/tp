@@ -9,6 +9,13 @@ import seedu.classmate.Ui;
  */
 public class ByeCommand extends Command {
 
+    public static Ui ui;
+    boolean isExit = false;
+
+    public ByeCommand() {
+        isExit = true;
+    }
+
     /**
      * Displays the goodbye message to the user.
      *
@@ -17,7 +24,7 @@ public class ByeCommand extends Command {
      * @param specialisationOverview The overview of specialisations (unused).
      */
     @Override
-    public void executeCommand(Major major, Display display, SpecialisationOverview specialisationOverview) {
-        display.showGoodbye();
+    public void executeCommand(Major major, Ui ui, SpecialisationOverview specialisationOverview) {
+        ui.showGoodbye();
     }
 }
