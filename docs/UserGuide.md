@@ -5,8 +5,11 @@ ClassMate is a CLI-based chatbot that assists NUS UG CEG students with timetable
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Viewing CEG graduation requirements: `viewGradReqs`](#viewing-major-requirements-viewgradreqs)
-  * [Viewing module info: `printModuleInfo`](#printing-module-info-printmoduleinfo)
+  * [Viewing module info: `viewModuleInfo`](#viewing-module-info-viewmoduleinfo)
+  * [Checking module availability: `queryModuleAvailability`](#checking-module-availability-querymoduleavailability)
   * [Viewing prerequisites: `viewPrereqs`](#viewing-prerequisites-viewprereqs)
+  * [Marking a module as done: `markDone`](#marking-a-module-as-done-markdone)
+  * [Viewing completed modules: `viewDone`](#viewing-completed-modules-viewdone)
   * [Viewing list of specialisations: `viewSpecialisations`](#viewing-list-of-specialisations-viewspecialisations)
   * [Viewing specialisation info: `viewSpecialisationInfo`](#viewing-specialisation-info-viewspecialisationinfo)
 * [Command Summary](#command-summary)
@@ -37,20 +40,39 @@ Format: `viewGradReqs`
 Examples:
 * `viewGradReqs`
 
-### Printing module info: `printModuleInfo`
+### Viewing module info: `viewModuleInfo`
 
-Shows details for specific modules, such as title, academic units, prerequisites, and whether the module can be taken.
+Shows details for a specific module, such as title, academic units, prerequisites, and whether the module can be taken.
 
-Format: `printModuleInfo MODULE_CODE [MORE_MODULE_CODES]...`
+Format: `viewModuleInfo MODULE_CODE`
 
 Examples:
-* `printModuleInfo CS2113`
-* `printModuleInfo CS2113 CG2028 CS2040C`
+* `viewModuleInfo CS2113`
+* `viewModuleInfo CG2023`
 
 Expected output:
 ```
-Module Info for CS2113
-Code: CS2113 Name: Software Engineering & Object-Oriented Programming Units: 4 Semester: 1/2 Prerequisites: CS2040C Can take: NO
+ Code: CS2113
+ Name: Software Engineering & Object-Oriented Programming
+ Units: 4
+ Semester: 1/2
+ Prerequisites: CS2040C
+ Can take: NO
+```
+
+### Checking module availability: `queryModuleAvailability`
+
+Checks if a module is available in Semester 1 or Semester 2.
+
+Format: `queryModuleAvailability MODULE_CODE sem1/sem2`
+
+Examples:
+* `queryModuleAvailability CG2023 sem2`
+* `queryModuleAvailability CS2113 sem1`
+
+Expected output:
+```
+Yes, CG2023 is only available in Semester 2.
 ```
 
 ### Viewing prerequisites: `viewPrereqs`
@@ -62,6 +84,42 @@ Format: `viewPrereqs MODULE_CODE`
 Examples:
 * `viewPrereqs CG2028`
 * `viewPrereqs CS2113`
+
+Expected output:
+```
+EE4204  
+└── CS2113
+    └── CS2040C
+        └── CS1010
+```
+
+### Marking a module as done: `markDone`
+
+Marks a module as completed. The module will be saved and remembered the next time you start ClassMate.
+
+Format: `markDone MODULE_CODE`
+
+Examples:
+* `markDone CS1010`
+* `markDone CS2040C`
+
+Expected output:
+```
+Successfully marked CS1010 as done!
+```
+
+### Viewing completed modules: `viewDone`
+
+Shows the list of modules you have marked as done.
+
+Format: `viewDone`
+
+Expected output:
+```
+Completed modules:
+- CS1010
+- CS2040C
+```
 
 ### Viewing list of specialisations: `viewSpecialisations`
 
@@ -85,8 +143,11 @@ Examples:
 
 | Action | Format | Examples |
 | :--- | :--- | :--- |
-| **Major Reqs** | `viewGradReqs`
-| **Module Info** | `printModuleInfo MODULE_CODE...` | `printModuleInfo CS2113 CG2028` |
+| **Major Reqs** | `viewGradReqs` | `viewGradReqs` |
+| **Module Info** | `viewModuleInfo MODULE_CODE` | `viewModuleInfo CS2113` |
+| **Availability** | `queryModuleAvailability MODULE_CODE sem1/sem2` | `queryModuleAvailability CG2023 sem2` |
 | **Prerequisites** | `viewPrereqs MODULE_CODE` | `viewPrereqs CG2028` |
-| **Specialisation List** | `viewSpecialisations` 
+| **Mark Done** | `markDone MODULE_CODE` | `markDone CS1010` |
+| **View Done** | `viewDone` | `viewDone` |
+| **Specialisation List** | `viewSpecialisations` | `viewSpecialisations` |
 | **Specialisation Info** | `viewSpecialisationInfo SPECIALISATION_INDEX` | `viewSpecialisationInfo 2` |
