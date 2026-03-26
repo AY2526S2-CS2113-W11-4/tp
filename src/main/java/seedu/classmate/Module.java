@@ -49,18 +49,6 @@ public class Module {
     }
 
     /**
-     * Adds multiple prerequisite module codes to this module.
-     *
-     * @param prereqCodes The module codes of the prerequisite modules.
-     */
-    public void addPrerequisites(String... prereqCodes) {
-        assert prereqCodes != null : "Prerequisite array should not be null";
-        for (String prereqCode : prereqCodes) {
-            addPrerequisite(prereqCode.trim());
-        }
-    }
-
-    /**
      * Sets the number of units for this module.
      *
      * @param units The number of academic units.
