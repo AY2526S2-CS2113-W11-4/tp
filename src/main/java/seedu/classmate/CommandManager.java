@@ -12,13 +12,17 @@ import seedu.classmate.commands.SpecialisationInfoCommand;
 import seedu.classmate.commands.ViewDoneCommand;
 import seedu.classmate.commands.ViewGradReqsCommand;
 import seedu.classmate.commands.ViewSpecialisationsCommand;
+import seedu.classmate.commands.CheckPrereqStatusCommand;
+import seedu.classmate.commands.CheckProfileCommand;
+import seedu.classmate.commands.SetSpecializationCommand;
+
 
 import java.util.ArrayList;
 
 public class CommandManager {
 
     public static Command createCommand(String commandWord, String arguments,
-            ArrayList<String> completedModules, Storage storage) {
+            ArrayList<String> completedModules, Storage storage, UserProfile userProfile) {
         switch (commandWord) {
         case "help":
             return new HelpCommand();
@@ -52,6 +56,12 @@ public class CommandManager {
 
         case "checkprereqstatus":
             return new CheckPrereqStatusCommand(arguments, completedModules);
+
+        case "setspecialization":
+            return new SetSpecializationCommand(arguments, userProfile);
+
+        case "checkprofile":
+            return new CheckProfileCommand(userProfile);
 
         default:
             throw new ClassMateException("Unknown command. Enter 'help' for available commands.");
