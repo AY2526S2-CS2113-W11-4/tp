@@ -1,3 +1,4 @@
+// @@author neerajehh
 package seedu.classmate.commands;
 
 import seedu.classmate.ClassMateException;
@@ -53,3 +54,4 @@ public class QueryModuleAvailabilityCommand extends Command {
         System.out.println(result);
     }
 }
+// @@author

@@ -1,3 +1,4 @@
+// @@author neerajehh
 package seedu.classmate.commands;
 
 import seedu.classmate.ClassMateException;
@@ -117,3 +118,4 @@ public class CheckPrereqStatusCommand extends Command {
     }
 }
 
+// @@author
