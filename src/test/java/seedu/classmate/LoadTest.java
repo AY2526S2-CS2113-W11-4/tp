@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class LoadTest {
 
     @Test
@@ -21,8 +20,8 @@ public class LoadTest {
     @Test
     public void loadSpecialisationInternetOfThingsModules_successful_load() throws ClassMateException {
         ModulesLoader specialisationModulesLoader = new ModulesLoader();
-        HashMap<String, ArrayList<Module>> specialisationModules =
-                specialisationModulesLoader.loadSpecialisationModules();
+        HashMap<String, ArrayList<Module>> specialisationModules = specialisationModulesLoader
+                .loadSpecialisationModules();
 
         ArrayList<Module> iotModules = specialisationModules.get("Internet of Things");
         Module secondModule =  iotModules.get(1);
