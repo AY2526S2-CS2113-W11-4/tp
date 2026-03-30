@@ -39,8 +39,7 @@ public class SpecialisationOverview {
             System.out.println((specialisationIndex + 1) + ". "
                     + specs.get(specialisationIndex).getSpecialisationName());
         }
-        System.out.println("Enter <viewSpecialisationInfo [index]> " +
-                "to see more information regarding the selected specialisation.");
+        System.out.println("Enter <viewSpecialisationInfo [index]> to know more about a specialisation.");
     }
 
     /**
@@ -101,9 +100,4 @@ public class SpecialisationOverview {
 
         return null;
     }
-
-    public ArrayList<Specialisation> getAllSpecialisations() {
-        return specs;
-    }
-
 }

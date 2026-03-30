@@ -145,9 +145,20 @@ Provides a list of available CEG specialisations.
 
 Format: `viewSpecialisations`
 
+Expected output:
+```
+List of all CEG Specialisations:
+1. Advanced Electronics
+2. Space Technolgy
+3. Industry 4.0
+4. Internet of Things
+5. Robotics
+Enter <viewSpecialisationInfo [index]> to know more about a specialisation.
+```
+
 ### Viewing specialisation info: `viewSpecialisationInfo`
 
-Provides an overview of the specialisation and the list of modules to take in order to fulfill said specialisation. Use `viewSpecialisations` to check the SPECIALISATION_INDEX.
+Provides a description of the specialisation, the fulfillment criteria and all the core and elective modules that can be taken to fulfill the specialisation. Use `viewSpecialisations` to get the SPECIALISATION_INDEX of the specialisation of interest.
 
 Format: `viewSpecialisationInfo SPECIALISATION_INDEX`
 
