@@ -104,8 +104,19 @@ public class Module {
      * @return A string with module code, name, units, semester, prerequisites and availability.
      */
     public String printInfo() {
+        return printInfo(new java.util.ArrayList<>());
+    }
+
+    /**
+     * Returns a formatted string with full module information, with canTake based on completed modules.
+     *
+     * @param completedModules The list of modules the user has completed.
+     * @return A string with module code, name, units, semester, prerequisites and availability.
+     */
+    public String printInfo(java.util.ArrayList<String> completedModules) {
         String prereqStr = prerequisites.isEmpty() ? "NIL" : String.join(", ", prerequisites);
-        String canTake = prerequisites.isEmpty() ? "YES" : "NO";
+        boolean allPrereqsDone = completedModules.containsAll(prerequisites);
+        String canTake = (prerequisites.isEmpty() || allPrereqsDone) ? "YES" : "NO";
         return " Code: " + moduleCode + "\n" +
                " Name: " + moduleName + "\n" +
                " Units: " + units + "\n" +

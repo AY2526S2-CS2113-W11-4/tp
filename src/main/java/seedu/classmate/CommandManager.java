@@ -35,7 +35,7 @@ public class CommandManager {
             return new PrereqCommand(arguments);
 
         case "viewmoduleinfo":
-            return new PrintModuleInfoCommand(arguments);
+            return new PrintModuleInfoCommand(arguments, completedModules);
 
         case "querymoduleavailability":
             return new QueryModuleAvailabilityCommand(arguments);

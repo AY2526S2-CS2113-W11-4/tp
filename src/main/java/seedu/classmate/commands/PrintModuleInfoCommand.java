@@ -13,14 +13,16 @@ import seedu.classmate.Ui;
 public class PrintModuleInfoCommand extends Command {
 
     private final String moduleCode;
+    private final java.util.ArrayList<String> completedModules;
 
     /**
      * Constructs a {@code PrintModuleInfoCommand} with the givne module code.
      *
      * @param args The module code entered by the user.
      */
-    public PrintModuleInfoCommand(String args) {
+    public PrintModuleInfoCommand(String args, java.util.ArrayList<String> completedModules) {
         this.moduleCode = args.trim().toUpperCase();
+        this.completedModules = completedModules;
     }
 
     /**
@@ -43,7 +45,7 @@ public class PrintModuleInfoCommand extends Command {
             throw new ClassMateException("Module not found: " + moduleCode);
         }
 
-        System.out.println(module.printInfo());
+        System.out.println(module.printInfo(completedModules));
     }
 }
 // @@author

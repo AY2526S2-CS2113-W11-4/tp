@@ -32,27 +32,27 @@ public class PrintModuleInfoCommandTest {
 
     @Test
     void execute_validModule_doesNotThrow() {
-        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("CS2113");
+        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("CS2113", new java.util.ArrayList<>());
         assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview));
     }
 
     @Test
     void execute_moduleNotFound_throwsException() {
-        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("CS9999");
+        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("CS9999", new java.util.ArrayList<>());
         assertThrows(ClassMateException.class,
                 () -> cmd.executeCommand(major, ui, specOverview));
     }
 
     @Test
     void execute_emptyModuleCode_throwsException() {
-        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("");
+        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("", new java.util.ArrayList<>());
         assertThrows(ClassMateException.class,
                 () -> cmd.executeCommand(major, ui, specOverview));
     }
 
     @Test
     void execute_moduleWithPrereqs_doesNotThrow() {
-        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("CS2113");
+        PrintModuleInfoCommand cmd = new PrintModuleInfoCommand("CS2113", new java.util.ArrayList<>());
         assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview));
     }
 }
