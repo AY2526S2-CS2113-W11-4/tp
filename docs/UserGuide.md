@@ -158,7 +158,7 @@ Enter <viewSpecialisationInfo [index]> to know more about a specialisation.
 
 ### Viewing specialisation info: `viewSpecialisationInfo`
 
-Provides a description of the specialisation, the fulfillment criteria and all the core and elective modules that can be taken to fulfill the specialisation. Use `viewSpecialisations` to get the SPECIALISATION_INDEX of the specialisation of interest.
+Provides a description of the specialisation, the elective modules fulfillment criteria and all the core and elective modules that can be taken to fulfill the specialisation. Use `viewSpecialisations` to get the SPECIALISATION_INDEX of the specialisation of interest.
 
 Format: `viewSpecialisationInfo SPECIALISATION_INDEX`
 
