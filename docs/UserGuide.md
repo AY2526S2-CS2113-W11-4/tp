@@ -178,5 +178,44 @@ Examples:
 | **Prerequisites** | `viewPrereqs MODULE_CODE` | `viewPrereqs CG2028` |
 | **Mark Done** | `markDone MODULE_CODE` | `markDone CS1010` |
 | **View Done** | `viewDone` | `viewDone` |
+| **Check Prereq Status** | `checkPrereqStatus MODULE_CODE` | `checkPrereqStatus CS2113` |
 | **Specialisation List** | `viewSpecialisations` | `viewSpecialisations` |
 | **Specialisation Info** | `viewSpecialisationInfo SPECIALISATION_INDEX` | `viewSpecialisationInfo 2` |
+### Checking prerequisite completion status: `checkPrereqStatus`
+
+Checks which prerequisites for a module you have already completed and which are still outstanding.
+
+Format: `checkPrereqStatus MODULE_CODE`
+
+Examples:
+* `checkPrereqStatus CS2113`
+* `checkPrereqStatus CG2271`
+
+Expected output (if CS2040C is marked done):
+```
+Prerequisite Status for CS2113:
+______________________________
+Completed prerequisites:
+  [DONE] CS2040C
+______________________________
+You have completed all prerequisites for CS2113!
+```
+
+Expected output (if no prerequisites completed):
+```
+Prerequisite Status for CS2113:
+______________________________
+Outstanding prerequisites:
+  [TODO] CS2040C
+______________________________
+You still need to complete 1 prerequisite(s) before taking CS2113.
+```
+
+Expected output (if module has no prerequisites):
+```
+CS2113 has no prerequisites. You can take it anytime!
+```
+
+Error cases:
+* If module code is empty: `Please provide a module code. Format: checkPrereqStatus <MODULE_CODE>`
+* If module not found: `Module not found: INVALID`
