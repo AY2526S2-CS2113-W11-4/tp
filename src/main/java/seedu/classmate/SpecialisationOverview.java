@@ -38,32 +38,6 @@ public class SpecialisationOverview {
     }
 
     /**
-     * Displays detailed information about the selected specialisation.
-     *
-     * The information printed includes the specialisation name, description,
-     * core modules, and elective modules.
-     *
-     * @param selectedSpecialisation The specialisation whose details are to be displayed.
-     */
-    public void displaySpecialisationDetails(Specialisation selectedSpecialisation) {
-        System.out.println("Specialisation: " + selectedSpecialisation.getSpecialisationName() + "\n");
-
-        System.out.println("Description: " + selectedSpecialisation.getSpecialisationDescription() + "\n");
-
-        System.out.println("Core Modules:");
-        for (Module coreModule : selectedSpecialisation.getSpecialisationCoreModules()) {
-            System.out.println(coreModule.getModuleCode() + " : " + coreModule.getModuleName());
-        }
-
-        System.out.println();
-
-        System.out.println("Elective Modules " + "(" + selectedSpecialisation.getElectiveRequirements() + "):");
-        for (Module electiveModule : selectedSpecialisation.getSpecialisationElectiveModules()) {
-            System.out.println(electiveModule.getModuleCode() + " : " + electiveModule.getModuleName());
-        }
-    }
-
-    /**
      * Retrieves the specialisation corresponding to the given number.
      *
      * @param specialisationNumber The number representing the desired specialisation in the list.
