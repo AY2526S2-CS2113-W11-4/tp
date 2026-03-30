@@ -27,7 +27,7 @@ The user interacts with it using a CLI. It is written in Java.
    * Justification: Helps users understand what the specialisation is about and the requirements, making them have a 
      better understanding if it aligns with their interest and academic timeline.
 
-* **Code contributed: [RepoSense link](https://nus-cs2113-ay2526-s2.github.io/tp-dashboard/?search=vinayvr26)
+* **Code contributed:** [RepoSense link](https://nus-cs2113-ay2526-s2.github.io/tp-dashboard/?search=vinayvr26)
 
 * **Documentation:**
    * **User Guide:** 
