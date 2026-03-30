@@ -65,7 +65,27 @@ The `viewPrereqs` feature displays a module’s prerequisite structure as a tree
 - `printPrereqTreeHelper` recursively builds the tree using prefixes and symbols (`├──`, `└──`) to represent hierarchy.
 - If a prerequisite module exists, recursion continues; otherwise, it is printed as a leaf.
 
-### Specialisation
+### **Viewing Specialisations**
+
+<Uses `Parser`, `ViewSpecialisationsCommand`, `Ui`, `SpecialisationOverview`>
+
+The `viewSpecialisations` command displays the names of the specialisations and their corresponding indices.
+The user is suggested to enter `viewSpecialisationInfo SPECIALISATION_INDEX`, to know more about a particular 
+specialisation.
+
+**Execution Flow:**
+- User inputs `viewSpecialisations`
+- `Parser` identifies the command word and `CommandManager` creates an instance of `ViewSpecialisationsCommand`.
+- `ClassMate` calls the `executeCommand` method of the `ViewSpecialisationCommand` object, which calls the
+`listAllSpecialisations` method of the `SpecialisationOverview` class.
+- The `listAllSpecialisations` method iterates through the `ArrayList<Specialisation>` Array list and displays each 
+specialisation and its index, in 1-based indexing order.
+
+**Core Logic:**
+- `SpecialisationOverview` is initialised once by `ClassMate` on application startup and is loaded with all the
+specialisation modules information by `ModulesLoader`.
+- 
+
 
 
 
