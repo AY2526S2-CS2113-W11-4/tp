@@ -89,5 +89,52 @@ class ModuleTest {
         String result = module.checkAvailability("sem2");
         assertEquals("No, CG2027 is not available in sem2.", result);
     }
-}
 
+    @Test
+    void addPrerequisites_multipleInputs_allAdded() {
+        Module module = new Module("CS2113", "Software Engineering");
+        module.addPrerequisites("CS1010", "CS2040C", "EE2026");
+        assertEquals(3, module.getPrerequisites().size(), "All three prerequisites should be added.");
+        assertTrue(module.getPrerequisites().contains("CS2040C"));
+    }
+
+    @Test
+    void checkAvailability_sem1Only_returnsYes() {
+        Module module = new Module("EE2026", "Digital Design");
+        module.setSemester("1");
+        String result = module.checkAvailability("sem1");
+        assertEquals("Yes, EE2026 is only available in Semester 1.", result);
+    }
+
+    @Test
+    void checkAvailability_invalidInput_returnsErrorMessage() {
+        Module module = new Module("CS2113", "Software Engineering");
+        String result = module.checkAvailability("summer");
+        assertEquals("Invalid semester. Please enter sem1 or sem2.", result);
+    }
+
+    @Test
+    void printInfo_withCompletedPrerequisites_showsCanTakeYes() {
+        Module module = new Module("CS2113", "Software Engineering");
+        module.addPrerequisite("CS2040C");
+
+        java.util.ArrayList<String> completed = new java.util.ArrayList<>();
+        completed.add("CS2040C");
+
+        String info = module.printInfo(completed);
+        assertTrue(info.contains("Can take: YES"), "Should be YES if prerequisites are in the completed list.");
+    }
+
+    @Test
+    void printInfo_missingSomePrerequisites_showsCanTakeNo() {
+        Module module = new Module("CS2113", "Software Engineering");
+        module.addPrerequisites("CS1010", "CS2040C");
+
+        java.util.ArrayList<String> completed = new java.util.ArrayList<>();
+        completed.add("CS1010");
+        // User still yet to fulfill all prerequisites, i.e. cs2040c
+
+        String info = module.printInfo(completed);
+        assertTrue(info.contains("Can take: NO"), "Should be NO if only some prerequisites are completed.");
+    }
+}
