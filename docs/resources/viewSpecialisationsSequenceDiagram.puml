@@ -1,0 +1,52 @@
+@startuml
+
+actor User
+participant ":ClassMate" as ClassMate
+participant ":Parser" as Parser
+participant ":CommandManager" as CommandManager
+participant ":ViewSpecialisationsCommand" as command
+participant "specOverview:SpecialisationOverview" as specOverview
+participant ":Ui" as Ui
+
+
+User -> ClassMate : "viewSpecialisations"
+activate ClassMate
+
+ClassMate -> Parser : parse("viewSpecialisations", ...)
+activate Parser
+
+Parser -> CommandManager : createCommand("viewspecialisations", ...)
+activate CommandManager
+
+CommandManager -> command : new ViewSpecialisationsCommand()
+activate command
+command --> CommandManager
+deactivate command
+
+CommandManager --> Parser
+deactivate CommandManager
+
+Parser --> ClassMate
+deactivate Parser
+
+ClassMate -> command : executeCommand(major, ui, specOverview)
+activate command
+
+command -> specOverview : getSpecialisations()
+activate specOverview
+specOverview --> command: specs
+deactivate specOverview
+
+command -> Ui:showAllSpecialisations(specs)
+activate Ui
+Ui --> command
+deactivate Ui
+
+command --> ClassMate
+deactivate command
+
+ClassMate -> command : isExit()
+activate command
+command --> ClassMate : false
+deactivate command
+@enduml

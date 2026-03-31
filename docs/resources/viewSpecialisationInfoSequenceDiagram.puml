@@ -1,0 +1,80 @@
+@startuml
+
+actor User
+participant ":ClassMate" as ClassMate
+participant ":Parser" as Parser
+participant ":CommandManager" as CommandManager
+participant ":SpecialisationInfoCommand" as command
+participant "specOverview:SpecialisationOverview" as specOverview
+participant "spec:Specialisation" as spec
+participant ":Ui" as Ui
+
+
+User -> ClassMate : "viewSpecialisationInfo <NUMBER>"
+activate ClassMate
+
+ClassMate -> Parser : parse("viewSpecialisationInfo <NUMBER>", ...)
+activate Parser
+
+Parser -> CommandManager : createCommand("viewspecialisationinfo", "NUMBER", ...)
+activate CommandManager
+
+CommandManager -> command : new ViewSpecialisationsCommand()
+activate command
+command --> CommandManager
+deactivate command
+
+CommandManager --> Parser
+deactivate CommandManager
+
+Parser --> ClassMate
+deactivate Parser
+
+ClassMate -> command : executeCommand(major, ui, specOverview)
+activate command
+
+command -> specOverview : getSpecialisationDetails(<NUMBER>)
+activate specOverview
+specOverview --> command : spec
+deactivate specOverview
+
+command -> Ui : showSpecialisationDetails(spec)
+activate Ui
+
+Ui -> spec : getSpecialisationName()
+activate spec
+spec --> Ui : name
+deactivate spec
+
+Ui -> spec : getSpecialisationDescription()
+activate spec
+spec --> Ui : description
+deactivate spec
+
+Ui -> spec : getSpecialisationCoreModules()
+activate spec
+spec --> Ui : coreModules
+deactivate spec
+
+Ui -> spec : getElectiveRequirements()
+activate spec
+spec --> Ui : requirements
+deactivate spec
+
+Ui -> spec : getSpecialisationElectiveModules()
+activate spec
+spec --> Ui : electiveModules
+deactivate spec
+
+Ui --> command
+deactivate Ui
+
+command --> ClassMate
+deactivate command
+
+ClassMate -> command : isExit()
+activate command
+command --> ClassMate : false
+deactivate command
+
+@enduml
