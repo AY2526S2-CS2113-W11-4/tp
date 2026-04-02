@@ -47,6 +47,10 @@ public class QueryModuleAvailabilityCommand extends Command {
         Module module = major.findModule(moduleCode);
 
         if (module == null) {
+            module = specialisationOverview.findSpecialisationModule(moduleCode);
+        }
+
+        if (module == null) {
             throw new ClassMateException("Module not found: " + moduleCode);
         }
 
