@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Module {
     private String moduleCode;
     private String moduleName;
-    private String moduleUnit;
+    private int moduleUnit;
     private String moduleType;
     private ArrayList<String> prerequisites;
     private String semester;
@@ -21,10 +21,10 @@ public class Module {
      * @param moduleName The title of the module.
      * @throws ClassMateException If the module code or name is empty.
      */
-    public Module(String moduleCode, String moduleName, String moduleUnit) {
+    public Module(String moduleCode, String moduleName, int moduleUnit) {
         assert moduleCode != null : "Module code should not be null";
         assert moduleName != null : "Module name should not be null";
-        assert moduleUnit != null : "Module unit should not be null";
+        assert moduleUnit > 0 : "Module unit should be greater than 0";
         if (moduleCode.trim().isEmpty() || moduleName.trim().isEmpty()) {
             throw new ClassMateException("Module details cannot be empty.");
         }

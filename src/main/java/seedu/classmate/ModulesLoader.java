@@ -67,7 +67,7 @@ public class ModulesLoader {
 
             String moduleName = tokens[CORE_MODULES_MODULE_NAME_INDEX];
             String moduleCode = tokens[CORE_MODULES_MODULE_CODE_INDEX];
-            String moduleUnit = tokens[CORE_MODULES_MODULE_UNIT_INDEX];
+            int moduleUnit = Integer.parseInt(tokens[CORE_MODULES_MODULE_UNIT_INDEX]);
             String semester = tokens[CORE_MODULES_MODULE_SEMESTER_INDEX];
             String prerequisites = tokens[CORE_MODULES_MODULE_PREREQUISITES_INDEX];
 
@@ -123,7 +123,7 @@ public class ModulesLoader {
             String moduleType = tokens[SPECIALISATION_MODULES_MODULE_TYPE_INDEX];
             String moduleName = tokens[SPECIALISATION_MODULES_MODULE_NAME_INDEX];
             String moduleCode = tokens[SPECIALISATION_MODULES_MODULE_CODE_INDEX];
-            String moduleUnit = tokens[SPECIALISATION_MODULES_MODULE_UNIT_INDEX];
+            int moduleUnit = Integer.parseInt(tokens[SPECIALISATION_MODULES_MODULE_UNIT_INDEX]);
             String semester = tokens[SPECIALISATION_MODULES_MODULE_SEMESTER_INDEX];
             String prerequisites = tokens[SPECIALISATION_MODULES_MODULE_PREREQUISITES_INDEX];
 
