@@ -1,0 +1,53 @@
+@startuml
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+actor User
+participant ":ClassMate" as ClassMate
+participant ":Parser" as Parser
+participant ":CommandManager" as CommandManager
+participant "m:MarkDoneCommand" as MarkDoneCommand
+participant ":UserProfile" as UserProfile
+participant ":Storage" as Storage
+
+User -> ClassMate : "markDone CS2040C"
+activate ClassMate
+
+ClassMate -> Parser : parse("markDone CS2040C")
+activate Parser
+
+Parser -> CommandManager : createCommand("markDone", "CS2040C", ...)
+activate CommandManager
+create MarkDoneCommand
+CommandManager -> MarkDoneCommand : new("CS2040C", userProfile, storage)
+CommandManager --> Parser : m
+deactivate CommandManager
+
+Parser --> ClassMate : m
+deactivate Parser
+
+ClassMate -> MarkDoneCommand : executeCommand(major, ui, specOverview)
+activate MarkDoneCommand
+
+MarkDoneCommand -> UserProfile : markModuleDone("CS2040C")
+activate UserProfile
+note right: Throws ClassMateException if duplicate
+UserProfile --> MarkDoneCommand
+deactivate UserProfile
+
+MarkDoneCommand -> Storage : saveUserProfile(userProfile)
+activate Storage
+Storage --> MarkDoneCommand
+deactivate Storage
+
+MarkDoneCommand -> ui : showSuccessMessage(...)
+activate ui
+ui --> MarkDoneCommand
+deactivate ui
+
+MarkDoneCommand --> ClassMate
+deactivate MarkDoneCommand
+
+ClassMate --> User
+deactivate ClassMate
+@enduml
