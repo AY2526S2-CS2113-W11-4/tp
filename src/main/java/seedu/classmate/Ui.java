@@ -149,4 +149,35 @@ public class Ui {
         printLine();
     }
     //@@author
+
+    // @@author lauwn-mower
+    // Helper methods for CheckProfile
+    /**
+     * Prints the user's completed modules and remaining core major requirements.
+     */
+    public void showBasicProfile(ArrayList<String> completed, ArrayList<Module> remainingMajorCore) {
+        printLine();
+        System.out.println("Your Academic Profile:");
+        printLine();
+
+        System.out.println("[COMPLETED MODULES]");
+        if (completed.isEmpty()) {
+            System.out.println("  - No modules marked as completed yet.");
+        } else {
+            for (String code : completed) {
+                System.out.println("  [DONE] " + code);
+            }
+        }
+        System.out.println();
+
+        System.out.println("[MAJOR CORE REQUIREMENTS REMAINING]");
+        if (remainingMajorCore.isEmpty()) {
+            System.out.println("  - All Major Core requirements cleared! Great job!");
+        } else {
+            for (Module m : remainingMajorCore) {
+                System.out.println("  - " + m.getModuleCode() + " : " + m.getModuleName());
+            }
+        }
+        System.out.println();
+    }
 }

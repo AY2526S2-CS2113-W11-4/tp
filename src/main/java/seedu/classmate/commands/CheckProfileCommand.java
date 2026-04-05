@@ -57,16 +57,14 @@ public class CheckProfileCommand extends Command {
         ArrayList<String> completedModules = userProfile.getUserCompletedModules();
 
         // calculate remaining modules
-        ArrayList<Module> remainingMajorCore = new ArrayList<>();
+        ArrayList<Module> remainingMajorModules = new ArrayList<>();
         for (seedu.classmate.Module m : major.getCoreModules()) {
             if (!completedModules.contains(m.getModuleCode())) {
-                remainingMajorCore.add(m);
+                remainingMajorModules.add(m);
             }
         }
 
-        // TODO: delegate to ui to generate basic acad profile
-//        System.out.println("Your Academic Profile:");
-//        Ui.printLine();
+        ui.showBasicProfile(completedModules, remainingMajorModules);
 
         // settle spec modules
         // first check if spec is empty
