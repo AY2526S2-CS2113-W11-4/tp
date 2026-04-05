@@ -8,7 +8,7 @@ Refer to the guide [_Getting started_](link).
 ## **Design**
 ### Architecture
 ClassMate adopts a 4-layer software architecture with the layers Controller, Model, View and Storage. This architecture heavily adopts a model-controller-view principle.
-![Architecture Diagram](resources/ArchitectureDiagram_v2.png)
+![Architecture Diagram](resources/ArchitectureDiagram_v2.1.png)
 The main components are described in the Components section below.
 
 ### Components:
@@ -19,7 +19,7 @@ The main components are described in the Components section below.
 * `UserProfile`: Holds the state of the user’s academic progress, including their specialisation and modules taken.
 * `ModulesLoader`: Loads the module information for major and specialisation modules to be used.
 * `Storage`: Responsible for reading from and writing data to the hard disk, ensuring user data is saved between sessions. 
-
+---
 ### Interaction between architecture components:
 The ***Sequence Diagram*** shows how the components interact with each other for the scenario when the user issues the command `viewPrereqs`
 
@@ -51,15 +51,17 @@ User      ClassMate    Parser   CommandManager  PrereqCommand  Major  SpecOvw
 - The UI is responsible only for presentation. It does not participate in the generation of the prerequisite tree.
 - The module lookup is separated from output formatting, making the feature easier to maintain and extend.
 - If the requested module cannot be found, the command should report an error instead of generating the prerequisite tree.
-
+---
 ### UI Component
-The UI component is responsible for displaying user-facing text output in ClassMate to the user.
-It displays the welcome message, help information, error messages, exit message, and formatted results for feature commands.
+The UI component handles user-facing interactions in terms of scanning input and printing output.
+* It displays a `ClassMate >` prompt to distinguish user input from output. 
+* It also displays the welcome message, help information, error messages, exit message, and formatted results for feature commands.
 
-The UI acts purely as a presentation layer and contains no application logic.
-It ensures that the output is displayed in a consistent and readable format.
-Changes to wording, formatting, or layout can be made in one place without affecting the rest of the system.
-
+#### Design Considerations
+* Ui acts purely as a presentation layer and contains no application logic.
+* Ui ensures that the output is displayed in a consistent and readable format.
+* Changes to wording, formatting, or layout can be made in one place without affecting the rest of the system.
+---
 ### Parser and CommandManager Component
 The 'Parser' and 'CommandManager' components jointly form the command-processing layer of ClassMate.
 'Parser' decomposes the raw user input into a command word and arguments, while the 'CommandManager' instantiates the corresponding command object.
@@ -86,7 +88,7 @@ This sequence diagram illustrates how ClassMate processes a user command from ra
 - The 'CommandManager' centralises command creation, ensuring command selection logic is kept in one place.
 - Each concrete command encapsulates its own behavior, ensuring the system is modular and easy to extend.
 - Error handling is performed early, so invalid input does not propagate further into the application.
-
+---
 ### Domain and Data Layer
 The domain/data layer stores and provides the relevant CEG data used by ClassMate.
 It consists of classes such as `Module`, `Major`, `Specialisation`, `SpecialisationOverview`, `UserProfile`.
@@ -106,6 +108,24 @@ It also provides methods to retrieve and update user profile information, such a
 - Data classes provide reusable operations for multiple commands, thus avoiding duplicating logic.
 - This structure enables the application to be easily extended with new features and data types.
 
+---
+
+### Storage Component
+The Storage component is responsible for the persistence of user data across different application sessions. Its key responsibilities include:
+* **File Management:** Manages two distinct data files: `completedModules.txt` (for academic history) and `specialization.txt` (for selected tracks).
+* **Data Retrieval:** At application startup, it parses raw text data into `ArrayList<String>` collections and returns them to the `ClassMate` main class for model initialization.
+* **State Persistence:** Provides a unified `saveUserProfile()` method that converts the current state of the `UserProfile` back into a standardized text format for disk storage.
+* **Data Flow Sequence:**
+1. **Startup:** `ClassMate` -> `Storage.load()` -> `ArrayLists` -> `new UserProfile(ArrayLists)`.
+2. **Update:** `Command` -> `UserProfile.update()` -> `Storage.saveUserProfile(UserProfile)`.
+
+#### Design Considerations 
+* Instead of handling I/O errors internally, the Storage component throws `ClassMateException`. This allows the **Controller** layer to catch the error and inform the user via the **View** without crashing the application.
+* The `UserProfile` model remains entirely unaware of the file system. All file paths and directory checks are encapsulated within the `Storage` class.
+* To prevent data corruption, the component overwrites the entire text file during a save operation.
+
+---
+
 ## **Implementation of Features**
 
 ### **Viewing Module Information**
@@ -115,10 +135,14 @@ It also provides methods to retrieve and update user profile information, such a
 The `viewModuleInfo` feature displays a module's code, name, units, semester, prerequisites and whether the user 
 can take it.
 
+---
 
 ### **Viewing Graduation Requirements** 
-<Hardcoded, used classes Module, Major, Ui>
+<Uses `ViewGradReqsCommand`, `Major`, `ModuleLoader`, `Module`, `Ui`>
 
+The `viewGradReqs` feature allows users to view the full list of core modules required for the CEG Major. This feature relies on the **Data Layer** to populate the Model at startup, ensuring the curriculum remains easily configurable via external text files.
+
+---
 ### **View Module Prerequisite Trees**
 <Uses `CommandManager`, `PrereqCommand`, `Module`, `Major`, `Ui`>
 
@@ -134,6 +158,8 @@ The `viewPrereqs` feature displays a module’s prerequisite structure as a tree
 - `printPrereqTree` initialises the process and optionally lists parent modules.
 - `printPrereqTreeHelper` recursively builds the tree using prefixes and symbols (`├──`, `└──`) to represent hierarchy.
 - If a prerequisite module exists, recursion continues; otherwise, it is printed as a leaf.
+
+---
 
 ### **Viewing Specialisations**
 
@@ -156,6 +182,8 @@ specialisation and its index, in 1-based indexing order.
 **Core Logic:**
 - `SpecialisationOverview` is initialised once by `ClassMate` on application startup and is loaded with all the
 specialisation modules information by `ModulesLoader`.
+
+---
 
 ### **Viewing Specialisation Information**
 
@@ -182,6 +210,7 @@ include the description, core modules, elective modules and elective module requ
 - If the user provides a non-integer input or an integer that is out of the range 1 - 5, an exception is thrown to 
   alert the user.
 
+---
 
 ### **Checking Prerequisite Completion Status**
 <Uses `Parser`, `CommandManager`, `CheckPrereqStatusCommand`, `Major`, `Module`, `Ui`>
@@ -203,24 +232,69 @@ The sequence diagram below illustrates how the components interact when `checkPr
 **Design Considerations:**
 - `completedModules` is stored as an `ArrayList` for simplicity. An alternative `HashSet` would give O(1) lookup but `ArrayList` is sufficient given the small number of modules a student completes.
 
+---
+
 ### **Marking Modules as Done**
-<Uses `MarkDoneCommand`, `Storage`, `Major`>
+<Uses `MarkDoneCommand`, `UserProfile`, `Storage`, `Major`, `Ui`>
 
 The `markDone` feature allows users to mark a module as completed. The completed module is added to the `completedModules` list and saved to disk via `Storage` so it persists across sessions.
 
+**Execution Flow:**
+1. The user inputs `markDone MODULE_CODE`.
+2. `Parser` and `CommandManager` collaborate to instantiate a `MarkDoneCommand` with the provided arguments.
+3. The command verifies the existence of the module within the `Major` curriculum.
+4. The command calls `userProfile.markModuleDone(moduleCode)`.
+   - The **Model** performs a duplicate check. If the module is already marked as completed, a `ClassMateException` is thrown.
+5. Upon successful update of the model, the command calls `storage.saveUserProfile(userProfile)` to write the updated history to `completedModules.txt`.
+6. A success message is displayed to the user via the `Ui`.
+
 The sequence diagram below illustrates how the components interact when `markDone CS2040C` is executed:
 
-![markDone Sequence Diagram](resources/markDoneSequenceDiagram.png)
+![markDone Sequence Diagram](resources/markDoneSequenceDiagram_v2.1.png)
 
 **Design Considerations:**
 - If the module is already in `completedModules`, the command prints a message and returns early to avoid duplicates.
 - `Storage.save()` is called immediately after adding the module to ensure persistence even if the app crashes.
-
+---
 ### **Querying Module Availability**
 <Uses `QueryModuleAvailabilityCommand`, `Module`>
 
 The `queryModuleAvailability` feature checks if a module is offered in a given semester (sem1 or sem2) by calling `module.checkAvailability(semester)`. The result is printed directly to the user.
 
+### Checking Academic Progress 
+The `checkProfile` feature calculates a user's degree progress by comparing their academic history against curriculum requirements.
+
+**Core Logic:**
+The command performs a "Set Difference" calculation between required modules and completed modules:
+`Modules To Complete = Required Modules - Completed Modules`
+
+**Execution Flow:**
+1. `CheckProfileCommand` retrieves the `completedModules` list from `UserProfile`.
+2. It compares this list against the `coreModules` in `Major`.
+3. It generates a "Remaining" list of `Module` objects for the Major.
+4. For the selected Specialisations, it calculates:
+   * **Core Progress:** Same set-difference logic as the Major.
+   * **Elective Progress:** Counts modules in the "completed" list that match elective options and returns a "Completed Count" vs "Required Count" (e.g., 1/2).
+5. All filtered lists and counts are passed to `Ui` for display.
+
+**Design considerations:**
+* **Stub Verification:** Because the calculation logic is housed in the Command, we can use a `StubUi` (Test Stub) to verify the math is correct without needing to capture console output.
+* **Case-Insensitivity:** Comparisons are normalized using `toUpperCase()` to ensure "cs2113" and "CS2113" are treated as the same entry.
+---
+### Managing Specialisations
+<Uses `SetSpecialisationCommand`, `RemoveSpecialisationCommand`, `UserProfile`, `Storage`, `SpecialisationOverview`, `Ui`>
+
+The specialisation management system allows users to customize their academic profile by adding or removing specific CEG tracks. This ensures the **Academic Progress Tracker** (`checkProfile`) remains relevant to the user's specific goals.
+
+**Execution Flow:**
+1. **Command Input:** The user enters either `setSpecialisation NAME` or `removeSpecialisation NAME`.
+2. **Controller Logic:** The `Parser` and `CommandManager` identify the intent and instantiate the respective command.
+3. **Model Mutation:**
+   - **Adding:** `SetSpecialisationCommand` calls `userProfile.addSpecialisation()`. The Model verifies the user has not exceeded the **limit of 2** and that the specialisation isn't already present.
+   - **Removing:** `RemoveSpecialisationCommand` calls `userProfile.removeSpecialisation()`. The Model performs a **case-insensitive** search to find and delete the entry.
+4. **Persistence:** If the Model update is successful, the command calls `storage.saveUserProfile(userProfile)` to sync the change to `user-specialisation.txt`.
+5. **View Update:** The `Ui` displays a success confirmation or handles the `ClassMateException` if validation fails.
+---
 
 ## **Appendix: Requirements**
 ### **Product scope**
@@ -311,6 +385,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Viewing completed modules
 - Input: `viewDone`
 - Expected: List of all modules marked as done.
+
+### Specialisation Management
+* **Adding a specialisation:**
+  * Input: `setSpecialisation Robotics`
+  * Expected: Success message shown. Data persists in `data/specialization.txt`.
+* **Testing Limits:**
+  * Action: Add two specialisations, then attempt to add a third.
+  * Expected: Error message: "You can only select up to 2 specialisations."
+* **Removing a specialisation:**
+  * Input: `removeSpecialisation robotics` (test lowercase)
+  * Expected: Success message. `checkProfile` no longer shows the "Robotics" header.
+
+### Progress Tracking
+* **Initial Check:**
+  * Input: `checkProfile` (with empty profile)
+  * Expected: All Major core modules listed under "Requirements Remaining."
+* **Marking and Verification:**
+  * Action: `markDone CS2113`, then `checkProfile`.
+  * Expected: `CS2113` disappears from "Remaining" and appears under "[COMPLETED MODULES]".
 
 ### Persistence across sessions
 1. Mark some modules as done with `markDone`.
