@@ -1,5 +1,6 @@
 package seedu.classmate;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import seedu.classmate.commands.ByeCommand;
 import seedu.classmate.commands.CheckPrereqStatusCommand;
@@ -25,10 +26,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CommandManagerTest {
 
-    private final ArrayList<String> completedModules = new ArrayList<>();
-    private final Storage storage = new Storage("data/testModules.txt");
-    private final UserProfile userProfile = new UserProfile();
+    private static final String TEST_MODULES_FILE = "data/testModules.txt";
+    private static final String TEST_SPECS_FILE = "data/testSpecs.txt";
+    private final Storage storage = new Storage(TEST_MODULES_FILE, TEST_SPECS_FILE);
+    private final UserProfile userProfile = new UserProfile(new ArrayList<>(), new ArrayList<>());
 
+    @AfterEach
+    void cleanup() {
+        new File(TEST_MODULES_FILE).delete();
+        new File(TEST_SPECS_FILE).delete();
+    }
+
+    // @@author VinayVR26
     @Test
     public void createHelpCommand() {
         Command command = CommandManager.createCommand("help", "", completedModules, storage,
@@ -42,7 +51,9 @@ public class CommandManagerTest {
                 userProfile);
         assertInstanceOf(ByeCommand.class, command);
     }
+    // @@author
 
+    // @@author gohsa5458
     @Test
     public void createViewGradReqsCommand() {
         Command command = CommandManager.createCommand(
@@ -92,13 +103,16 @@ public class CommandManagerTest {
                 "viewdone", "", completedModules, storage, userProfile);
         assertInstanceOf(ViewDoneCommand.class, command);
     }
+    // @@author
 
+    // @@author Michael-coding06
     @Test
     public void createCheckProfileCommand() {
         Command command = CommandManager.createCommand(
                 "checkprofile", "", completedModules, storage, userProfile);
         assertInstanceOf(CheckProfileCommand.class, command);
     }
+    // @@author
 
     @Test
     public void createPrereqCommand() {
@@ -118,7 +132,7 @@ public class CommandManagerTest {
     public void createSetSpecialisationCommand() {
         Command command = CommandManager.createCommand(
                 "setspecialisation", "Robotics", completedModules, storage, userProfile);
-        assertInstanceOf(SetSpecializationCommand.class, command);
+        assertInstanceOf(SetSpecialisationCommand.class, command);
     }
 
     @Test

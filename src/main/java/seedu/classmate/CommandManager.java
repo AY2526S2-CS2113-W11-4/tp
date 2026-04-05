@@ -47,7 +47,7 @@ public class CommandManager {
             return new SpecialisationInfoCommand(arguments);
 
         case "markdone":
-            return new MarkDoneCommand(arguments, completedModules, storage);
+            return new MarkDoneCommand(arguments, userProfile, storage);
 
         case "viewdone":
             return new ViewDoneCommand(completedModules);
