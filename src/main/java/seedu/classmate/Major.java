@@ -31,7 +31,7 @@ public class Major {
         if (coreModules.isEmpty()) {
             return "Core Modules List is currently empty.";
         }
-        String moduleListHeader = "Here is a list of modules required to fulfill CEG Major: ";
+        String moduleListHeader = "Here is a list of modules required to fulfill CEG Major:\n";
         String moduleList = coreModules.stream()
                 .map(Module::toString)
                 .collect(Collectors.joining("\n"));
