@@ -32,7 +32,7 @@ EE4204
         └── CS1010
 ```
 
-* **Set Specialization**
+### **Set Specialization**
 **What it does:**  
 Allows users to select and set their desired CEG specialization.
 
@@ -66,3 +66,16 @@ Completed Modules:
 ______________________________
 Keep up the great work!
 ```
+
+### **Find Module by Code**
+**What it does:**
+Allows the system to quickly retrieve a specific module using its module code.
+
+**Why it is useful**
+Many features (such as prerequisite viewing and validation) require direct access to a module. This function provides a simple and efficient way to locate modules within the major requirements.
+
+**Implementation details:**
+- Iterates through the list of core modules
+- Matches module codes using string comparison
+- Returns the corresponding Module object if found
+- Returns null if the module does not exist
