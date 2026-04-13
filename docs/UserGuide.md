@@ -168,12 +168,11 @@ Format: `viewSpecialisations`
 Expected output:
 ```
 List of all CEG Specialisations:
-1. Others
-2. Advanced Electronics
-3. Space Technology
-4. Industry 4.0
-5. Internet of Things
-6. Robotics
+1. Advanced Electronics
+2. Space Technology
+3. Industry 4.0
+4. Internet of Things
+5. Robotics
 Enter <viewSpecialisationInfo [index]> to know more about a specialisation.
 ```
 
@@ -255,7 +254,7 @@ Format: `checkProfile`
 | **Spec** | **List All Specialisations** | `viewSpecialisations` | `viewSpecialisations` |
 | | **View Specialisation Info** | `viewSpecialisationInfo INDEX` | `viewSpecialisationInfo 2` |
 | | **Add Specialisation** | `setSpecialisation NAME` | `setSpecialisation Robotics` |
-| | **Remove Specialisation** | `removeSpecialisation NAME` | `removeSpecialisation IoT` |
+| | **Remove Specialisation** | `removeSpecialisation NAME` | `removeSpecialisation Robotics` |
 | **Profile** | **Mark Module as Done** | `markDone MODULE_CODE` | `markDone CS2040C` |
 | | **View Completed Modules** | `viewDone` | `viewDone` |
 | | **Check Academic Profile** | `checkProfile` | `checkProfile` |
