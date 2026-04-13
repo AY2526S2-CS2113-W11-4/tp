@@ -310,8 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student                                   | check my current academic progress            | stay motivated and ensure I am on track for graduation                            |
 | `* *`    | student                                   | remove a module from my completed list        | correct my mistake for marking wrong modules as done                            |
 | `* *`    | student                                   | view modules using keywords                   | find relevant courses even if I do not know the exact module code                 |
-| `*`      | user wanting non-core modules             | view non-core modules using keywords          | find interesting electives outside of my primary major                            |
-| `*`      | user easily overwhelmed by info           | view modules filtered by level or subject     | narrow down my choices to suit my current year of study                           |
+
 
 
 

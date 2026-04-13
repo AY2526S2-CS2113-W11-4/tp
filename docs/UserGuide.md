@@ -37,7 +37,7 @@ Saves your current academic profile and exits ClassMate.
 
 #### Viewing major requirements: `viewGradReqs`
 
-Shows a list of modules the student has to clear in order to graduate.
+Shows a list of remaining modules the student has to clear in order to graduate. Completed modules are excluded from the list.
 
 Format: `viewGradReqs`
 
@@ -279,5 +279,6 @@ Format: `checkProfile`
 | | **Remove Specialisation** | `removeSpecialisation NAME` | `removeSpecialisation Robotics` |
 | **Profile** | **Mark Module as Done** | `markDone MODULE_CODE` | `markDone CS2040C` |
 | | **View Completed Modules** | `viewDone` | `viewDone` |
+| | **Unmark Module as Done** | `unmarkDone MODULE_CODE` | `unmarkDone CS1010` |
 | | **Check Academic Profile** | `checkProfile` | `checkProfile` |
 | | **Check Prereq Checklist** | `checkPrereqStatus MODULE_CODE` | `checkPrereqStatus CS2113` |

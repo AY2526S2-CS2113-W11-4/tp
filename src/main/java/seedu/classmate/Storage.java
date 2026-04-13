@@ -61,7 +61,11 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (!line.isEmpty()) {
-                    completedModules.add(line);
+                    if (isValidModuleCode(line)) {
+                        completedModules.add(line);
+                    } else {
+                        logger.warning("Skipping corrupted module entry: " + line);
+                    }
                 }
             }
             scanner.close();
@@ -70,6 +74,14 @@ public class Storage {
             logger.warning("Failed to load completed modules: " + e.getMessage());
         }
         return completedModules;
+    }
+
+    /**
+     * Validates that a module code matches the expected format (e.g. CS2113, CG2023).
+     * Guards against corrupted or manually edited save file entries.
+     */
+    private boolean isValidModuleCode(String code) {
+        return code.matches("[A-Z]{2,4}[0-9]{4}[A-Z]?");
     }
 
     /**
@@ -89,7 +101,11 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (!line.isEmpty()) {
-                    specialisations.add(line);
+                    if (isValidSpecialisation(line)) {
+                        specialisations.add(line);
+                    } else {
+                        logger.warning("Skipping corrupted specialisation entry: " + line);
+                    }
                 }
             }
             scanner.close();
@@ -98,6 +114,16 @@ public class Storage {
             logger.warning("Failed to load specialisations: " + e.getMessage());
         }
         return specialisations;
+    }
+
+    /**
+     * Validates that a specialisation name is one of the known valid CEG specialisations.
+     * Guards against corrupted or manually edited save file entries.
+     */
+    private boolean isValidSpecialisation(String spec) {
+        return spec.equals("Advanced Electronics") || spec.equals("Space Technology")
+                || spec.equals("Industry 4.0") || spec.equals("Internet of Things")
+                || spec.equals("Robotics");
     }
 
     /**
