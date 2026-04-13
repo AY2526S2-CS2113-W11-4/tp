@@ -26,6 +26,9 @@ public class SpecialisationOverview {
         specs = new ArrayList<>();
 
         for (String specName : specialisationMap.keySet()) {
+            if (specName.equalsIgnoreCase("Others")) {
+                continue;
+            }
             specs.add(new Specialisation(specName, specialisationMap.get(specName)));
         }
     }

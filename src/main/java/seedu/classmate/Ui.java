@@ -154,7 +154,6 @@ public class Ui {
                     + specs.get(specialisationIndex).getSpecialisationName());
         }
         System.out.println("Enter <viewSpecialisationInfo [index]> to know more about a specialisation.");
-        printLine();
     }
 
     /**
