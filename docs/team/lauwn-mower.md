@@ -26,7 +26,7 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
 ---
 * **Developer Guide contribution:**
     * Authored program architecture diagram for v2.1 (see Fig. 1) to follow Model-Controller-View principle
-    * Authored table of User Stories (see Fig. 2)
+    * Authored initial table of User Stories (see Fig. 2) as of v2.0 (enhanced as of v2.1)
     * Documented `Ui` and `Storage` components to include their responsibilities and design considerations
     * Documented Instructions for Manual Testing on setSpecialisation
     * Documented the design considerations for the Academic Progress Tracker and its implementation using set-theory logic.
@@ -34,7 +34,7 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
 **Fig. 1: Architecture Diagram as of ClassMate v2.1**
 ![Architecture Diagram](../resources/ArchitectureDiagram_v2.1.png)
 
-**Fig. 2: Table of User Stories** 
+**Fig. 2: Table of User Stories as of v2.0** 
 | Priority | As a ...                                  | I want to ...                                 | So that I can ...                                                                 |
 | -------- | ----------------------------------------- |-----------------------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | new user                                  | view usage instructions                       | refer to instructions when I forget how to use the App                            |
@@ -45,12 +45,21 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
 | `* * *`  | student looking to specialise             | view overview of a specialisation             | understand what the specialisation is about to see if it algins with my interests |
 | `* *`    | recurring user                            | save my profile and academic history          | avoid the repetitive task of re-entering completed modules                        |
 | `* *`    | user who wants a visual overview          | view a progress tracker for my degree         | stay motivated and ensure I am on track for graduation                            |
-| `* *`    | student                                   | view modules using keywords                   | find relevant courses even if I do not know the exact module code                 |
-| `*`      | user wanting non-core modules             | view non-core modules using keywords          | find interesting electives outside of my primary major                            |
-| `*`      | user easily overwhelmed by info           | view modules filtered by level or subject     | narrow down my choices to suit my current year of study                           |
 
 ---
-* **Project Management contribution:**    
+
+* **Project Management contributions:**    
     * Updated shared GoogleDoc to track weekly tasks and happenings
-    * Authored a workflow for teammates to follow [Team-GoogleDoc-Workflow](https://docs.google.com/document/d/1lDx2Q-6_G2kFYOSqNSmqUyn80Z25JdtKvQ5ZFfafY78/edit?tab=t.wf6jpciy2lio)
+    * Authored a workflow for teammates to follow [Team-GoogleDoc-Workflow](../resources/CS2113-W11-4_GoogleDocWorkflow.pdf)
+
+---
+* **Team-based tasks contributions:**
+    * Maintaining issue tracker for v1.0, v2.0 and v2.1
+    * Released Jar file for v1.0
+    * Authored [initial UG structure](https://github.com/AY2526S2-CS2113-W11-4/tp/commit/2ab255e50109bbbf7e927741c8fb5e2d74a67190) and overview of ClassMate application 
+    * Authored [initial DG structure](https://github.com/AY2526S2-CS2113-W11-4/tp/commit/c96e31beef1519a73c38f21df4547338e3d87ca0) and user stories
+---
+* **Review contributions:**
+    * Reviewed [PR#93](https://github.com/AY2526S2-CS2113-W11-4/tp/pull/93)
+  
 
