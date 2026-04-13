@@ -58,7 +58,7 @@ public class MarkDoneCommand extends Command {
                     + String.join(", ", missingPrereqs));
         }
 
-        userProfile.markModuleDone(moduleCode);
+        userProfile.markModuleDone(module);
         storage.saveUserProfile(userProfile);
 
         logger.info("Marked " + moduleCode + " as done.");
