@@ -144,7 +144,11 @@ public class SetSpecialisationCommandTest {
         ClassMateException exception = assertThrows(ClassMateException.class,
                 () -> cmd.executeCommand(major, ui, specOverview));
 
-        assertEquals("'NotASpec' is an invalid specialisation. Enter <viewSpecialisations> to know what specialisations are available. ", exception.getMessage()); // @@author neerajehh
+        // @@author neerajehh
+        String expectedMsg = "'NotASpec' is an invalid specialisation."
+                + " Enter <viewSpecialisations> to know what specialisations are available. ";
+        assertEquals(expectedMsg, exception.getMessage());
+        // @@author
         assertTrue(userProfile.getUserSpecialisations().isEmpty());
     }
 }
