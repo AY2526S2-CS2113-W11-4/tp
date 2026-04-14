@@ -33,7 +33,7 @@ The user interacts with it using a CLI. It is written in Java.
 * **New Feature**: Case-insensitive command execution, by adding logic in `Parser`:
    * What it does: Automatically converts user input to lower case allowing the application to recognise the command
      and the arguments (if any). This allows the application to recognise commands and arguments that have mixed 
-     capitalisation like `vIeWpReReQs cS2113`.
+     capitalisation such as `vIeWpReReQs cS2113`.
    * Justification: Increases the robustness of the application. By eliminating case-sensitivity, the application
      significantly reduces user friction. In a typing-intensive interface, strict casing requirements induce
      much cognitive load in the user, leading to command failures. By removing these constraints, the user experience
@@ -57,11 +57,11 @@ The user interacts with it using a CLI. It is written in Java.
 
 * **Documentation:**
    * **User Guide:** 
-     * Wrote documentation for the feature `help` 
-     * Added more important information for the feature `viewSpecialisations`, to make it clearer
+     * Wrote documentation for the feature `help`.
+     * Added more important information for the feature `viewSpecialisations`, to make it clearer.
    * **Developer Guide:**
-     * Wrote documentation for the features `viewSpecialisations` and `viewSpecialisationInfo`
-     * Created Sequence Diagrams for `viewSpecialisations` and `viewSpecialisationInfo` commands
+     * Wrote documentation for the features `viewSpecialisations` and `viewSpecialisationInfo`.
+     * Created Sequence Diagrams for `viewSpecialisations` and `viewSpecialisationInfo` commands, using plantUML.
 
 * **Contributions to team tasks:**
    * Maintained Continuous Integration/Deployment (CI/CD) by refactoring existing test cases to ensure compatibility 
@@ -69,7 +69,7 @@ The user interacts with it using a CLI. It is written in Java.
    * Made JavaDoc comments clearer for methods that were authored by my teammates.
    * Suggested the shift from hard-coded data to an external storage system (`ModulesLoader`), eliminating inefficient
      instantiation of module information, improving maintainability and adhering to coding standards.
-   * Modified other classes - `ClassMate`, `Major`, `Module` to incorporate the `ModulesLoader` architecture of 
+   * Modified other classes - `ClassMate`, `Major`, `Module` to incorporate the `ModulesLoader` functionality of 
      automated loading of module information.
    * Fixed checkstyle errors (such as removing wildcard imports).
    * Fixed bugs in all versions (v1.0, v2.0, v2.1) and those reported during PE Dry Run.
