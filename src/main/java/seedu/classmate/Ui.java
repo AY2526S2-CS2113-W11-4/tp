@@ -147,11 +147,16 @@ public class Ui {
      */
     public static void showAllSpecialisations(ArrayList<Specialisation> specs) {
         printLine();
+        int displayNumber = 1;
         System.out.println("List of all CEG Specialisations:");
-        for (int specialisationIndex = 0; specialisationIndex < specs.size(); specialisationIndex++) {
-            System.out.println((specialisationIndex + 1) + ". "
-                    + specs.get(specialisationIndex).getSpecialisationName());
+        for (Specialisation spec : specs) {
+            if (spec.getSpecialisationName().equalsIgnoreCase("Others")) {
+                continue;
+            }
+            System.out.println(displayNumber + ". " + spec.getSpecialisationName());
+            displayNumber = displayNumber + 1;
         }
+
         System.out.println("Enter <viewSpecialisationInfo [index]> to know more about a specialisation.");
     }
 

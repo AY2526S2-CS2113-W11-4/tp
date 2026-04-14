@@ -26,9 +26,6 @@ public class SpecialisationOverview {
         specs = new ArrayList<>();
 
         for (String specName : specialisationMap.keySet()) {
-            if (specName.equalsIgnoreCase("Others")) {
-                continue;
-            }
             specs.add(new Specialisation(specName, specialisationMap.get(specName)));
         }
     }
@@ -50,11 +47,13 @@ public class SpecialisationOverview {
      * @throws ClassMateException If the provided number is outside the range of available specialisations.
      */
     public Specialisation getSpecialisationDetails(int specialisationNumber) {
-        if (specialisationNumber < 1 || specialisationNumber > specs.size()) {
+        ArrayList<Specialisation> visibleSpecs = getVisibleSpecialisations();
+
+        if (specialisationNumber < 1 || specialisationNumber > visibleSpecs.size()) {
             throw new ClassMateException("Invalid specialisation number. Please choose a number between 1 and "
-                    + specs.size());
+                    + visibleSpecs.size());
         }
-        return specs.get(specialisationNumber - 1);
+        return visibleSpecs.get(specialisationNumber - 1);
     }
 
     public Module findSpecialisationModule(String moduleCode) {
@@ -73,6 +72,21 @@ public class SpecialisationOverview {
         }
 
         return null;
+    }
+
+
+    /**
+     * Returns a list of specialisations excluding the "Others" utility category.
+     * @return An Array List of specialisations to be displayed.
+     */
+    public ArrayList<Specialisation> getVisibleSpecialisations() {
+        ArrayList<Specialisation> visibleSpecs = new ArrayList<>();
+        for (Specialisation spec : specs) {
+            if (!spec.getSpecialisationName().equalsIgnoreCase("Others")) {
+                visibleSpecs.add(spec);
+            }
+        }
+        return visibleSpecs;
     }
 
     // @@author lauwn-mower

@@ -18,6 +18,6 @@ public class ViewSpecialisationsCommand extends Command {
      */
     @Override
     public void executeCommand(Major major, Ui ui, SpecialisationOverview specialisationOverview) {
-        ui.showAllSpecialisations(specialisationOverview.getSpecialisations());
+        ui.showAllSpecialisations(specialisationOverview.getVisibleSpecialisations());
     }
 }

@@ -3,12 +3,12 @@ Internet of Things,Core,Data Science for the Internet of Things,EE4211,4,1,EE221
 Internet of Things,Core,Modern Microelectronics Devices and Sensors,EE4409,4,2,CG2027
 Internet of Things,Elective,Computer Engineering Capstone Project,CG4002,8,1/2,CS2113
 Internet of Things,Elective,Wireless Networking,CS4222,4,2,EE4204|ST2334
-Internet of Things,Elective,Computer Networks,EE4204,4,1/2,None
+Internet of Things,Elective,Computer Networks,EE4204,4,1/2,CS2113
 Internet of Things,Elective,Hardware for Internet of Things,EE4216,4,1,EE2026
 Internet of Things,Elective,Embedded Hardware System Design,EE4218,4,2,CG2028
 Internet of Things,Elective,Machine Learning,CS3244,4,1/2,CS2040C|ST2334|MA1508E|MA1511|MA1512
-Internet of Things,Elective,Design/Research Capstone,EE4002D/R,8,1/2,Check with your faculty
-Internet of Things,Elective,Computing Project - IOT related,CP4106,8,1/2,Check with your faculty
+Internet of Things,Elective,Design/Research Capstone,EE4002D/R,8,1/2,None
+Internet of Things,Elective,Computing Project - IOT related,CP4106,8,1/2,None
 
 Advanced Electronics,Core,Integrated Analog Design,EE3408C,4,1,CG2027
 Advanced Electronics,Core,Microelectronic Materials and Devices,EE3431C,4,1/2,None
@@ -23,8 +23,8 @@ Advanced Electronics,Elective,Fabrication Process Technology,EE4436,4,1,CG2027
 Advanced Electronics,Elective,Photonics - Principles and Applications,EE4437,4,2,CG2027
 Advanced Electronics,Elective,Solar Cells and Modules,EE4438,4,2,CG2027
 
-Space Technology,Core,Beyond Sky - New Space Technology and Application,EE3105,4,1,Check with your faculty
-Space Technology,Core,Design/Research Capstone,EE4002D/R,8,1/2,Check with your faculty
+Space Technology,Core,Beyond Sky - New Space Technology and Application,EE3105,4,1,None
+Space Technology,Core,Design/Research Capstone,EE4002D/R,8,1/2,None
 Space Technology,Elective,Communication Systems,EE3131C,4,2,CG2023
 Space Technology,Elective,Introduction to RF and Microwave Systems,EE3104C,4,1,PC2020
 Space Technology,Elective,Feedback Control Systems,EE3331C,4,1/2,CG2023
@@ -35,25 +35,25 @@ Space Technology,Elective,Power Electronics for Sustainable Energy Technologies,
 Space Technology,Elective,RF Communications,EE4101,4,1,PC2020
 
 Industry 4.0,Core,Feedback Control Systems,EE3331C,4,1/2,CG2023
-Industry 4.0,Core,Introduction to Cyber Physical Systems,EE3306,4,1,Check with your faculty
+Industry 4.0,Core,Introduction to Cyber Physical Systems,EE3306,4,1,None
 Industry 4.0,Elective,Data Science for the Internet of Things,EE4211,4,1,EE2211|ST2334
 Industry 4.0,Elective,Computer Vision,EE4212,4,1,MA1508E|EE3731C/EE4704
-Industry 4.0,Elective,Advanced Control Systems,EE4302,4,1/2,Check with your faculty
-Industry 4.0,Elective,Control System Design and Simulation,EE4307,4,1/2,Check with your faculty
-Industry 4.0,Elective,Fuzzy Logic and Neuro Fuzzy Systems,EE4311,4,1,Check with your faculty
-Industry 4.0,Elective,Artificial Neural Networks,EE4312,4,2,Check with your faculty
+Industry 4.0,Elective,Advanced Control Systems,EE4302,4,1/2,None
+Industry 4.0,Elective,Control System Design and Simulation,EE4307,4,1/2,None
+Industry 4.0,Elective,Fuzzy Logic and Neuro Fuzzy Systems,EE4311,4,1,None
+Industry 4.0,Elective,Artificial Neural Networks,EE4312,4,2,None
 Industry 4.0,Elective,Eyes from above: Guidance; Navigation and Control,EE4314,4,1,EE2211
-Industry 4.0,Elective,Intelligent Industrial Control Systems,EE4315,4,1/2,Check with your faculty
+Industry 4.0,Elective,Intelligent Industrial Control Systems,EE4315,4,1/2,None
 Industry 4.0,Elective,Machine Vision,ME5405,4,1/2,EE3331C
 
-Robotics,Elective,Design/Research Capstone,EE4002D/R,8,1/2,Check with your faculty
-Robotics,Elective,Robotic System Design,EE3305,4,1,Check with your faculty
+Robotics,Elective,Design/Research Capstone,EE4002D/R,8,1/2,None
+Robotics,Elective,Robotic System Design,EE3305,4,1,None
 Robotics,Elective,Remote Sensing and Analysis with Deep Learning Technique,EE4115,4,2,EE2211|CG2023|MA1508E
-Robotics,Elective,Fuzzy/Neural Systems for Intelligent Robotics,EE4305,4,1/2,Check with your faculty
+Robotics,Elective,Fuzzy/Neural Systems for Intelligent Robotics,EE4305,4,1/2,None
 Robotics,Elective,Autonomous Robot Systems,EE4308,4,2,EE3331C
 Robotics,Elective,Robot Perception,EE4309,4,1,EE3731C
-Robotics,Elective,Fuzzy Logic and Neuro Fuzzy Systems,EE4311,4,1,Check with your faculty
-Robotics,Elective,Artificial Neural Networks,EE4312,4,2,Check with your faculty
+Robotics,Elective,Fuzzy Logic and Neuro Fuzzy Systems,EE4311,4,1,None
+Robotics,Elective,Artificial Neural Networks,EE4312,4,2,None
 Robotics,Elective,Eyes from above: Guidance; Navigation and Control,EE4314,4,1,EE2211
 Robotics,Elective,Human-Robot Interaction,EE4705,4,1,EE2211|EE3331C
 
